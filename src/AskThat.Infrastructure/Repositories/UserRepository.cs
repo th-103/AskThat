@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AskThat.Infrastructure.Repositories
 {
-    public class UserRepository : IUserRepository, IRepository<User>
+    public class UserRepository : IUserRepository
     {
         private readonly AskThatDbContext _context;
 
@@ -55,6 +55,19 @@ namespace AskThat.Infrastructure.Repositories
             }
         }
 
+        public async Task<bool> ExistsAsync(int id)
+        {
+            return await _context.Users.AnyAsync(u => u.UserId == id);
+        }
+
+        public async Task<IEnumerable<User>> FindAsync(Expression<Func<User, bool>> predicate)
+        {
+            return await _context.Users
+                .Include(u => u.Role)
+                .Where(predicate)
+                .ToListAsync();
+        }
+
         public async Task<User?> GetByUsernameAsync(string username)
         {
             return await _context.Users
@@ -62,49 +75,37 @@ namespace AskThat.Infrastructure.Repositories
                 .FirstOrDefaultAsync(u => u.Username == username);
         }
 
-        public async Task<bool> ExistsAsync(string username, string email)
+        public async Task<User?> GetByEmailAsync(string email)
         {
-            return await _context.Users.AnyAsync(u => u.Username == username || u.Email == email);
+            return await _context.Users
+                .Include(u => u.Role)
+                .FirstOrDefaultAsync(u => u.Email == email);
         }
 
-        public Task<User?> GetByEmailAsync(string email)
+        public async Task<IEnumerable<User>> GetUsersByRoleAsync(int roleId)
         {
-            throw new NotImplementedException();
+            return await _context.Users
+                .Include(u => u.Role)
+                .Where(u => u.RoleId == roleId)
+                .ToListAsync();
         }
 
-        public Task<IEnumerable<User>> GetUsersByRoleAsync(int roleId)
+        public async Task<bool> IsUsernameExistsAsync(string username)
         {
-            throw new NotImplementedException();
+            return await _context.Users.AnyAsync(u => u.Username == username);
         }
 
-        public Task<bool> IsUsernameExistsAsync(string username)
+        public async Task<bool> IsEmailExistsAsync(string email)
         {
-            throw new NotImplementedException();
+            return await _context.Users.AnyAsync(u => u.Email == email);
         }
 
-        public Task<bool> IsEmailExistsAsync(string email)
+        public async Task<IEnumerable<User>> GetActiveUsersAsync()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<User>> GetActiveUsersAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(User entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> ExistsAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<User>> FindAsync(Expression<Func<User, bool>> predicate)
-        {
-            throw new NotImplementedException();
+            return await _context.Users
+                .Include(u => u.Role)
+                .Where(u => u.IsActive)
+                .ToListAsync();
         }
     }
 }
