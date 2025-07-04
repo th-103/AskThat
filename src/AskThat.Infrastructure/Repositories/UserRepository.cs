@@ -91,5 +91,20 @@ namespace AskThat.Infrastructure.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public Task DeleteAsync(User entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ExistsAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<User>> FindAsync(Expression<Func<User, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
