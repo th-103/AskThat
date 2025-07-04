@@ -483,6 +483,7 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
-
+.gitignore
 repomix-output.txt
+repomix-output.xml
 .repomix
