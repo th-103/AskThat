@@ -1,19 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
-public class LoginViewModel
+namespace AskThat.Web.Models
 {
-    [Required(ErrorMessage = "Username is required")]
-    [StringLength(50, ErrorMessage = "Username can be at most 50 characters")]
-    public string Username { get; set; } = string.Empty;
+    public class LoginViewModel
+    {
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address")]
+        [StringLength(100, ErrorMessage = "Email can be at most 100 characters")]
+        public string Email { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "Password is required")]
-    [DataType(DataType.Password)]
-    public string Password { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Password is required")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; } = string.Empty;
 
-    public string? ReturnUrl { get; set; }
-    public bool RememberMe { get; internal set; }
+        public string? ReturnUrl { get; set; }
+
+        [Display(Name = "Remember me")]
+        public bool RememberMe { get; set; }
+    }
 }
