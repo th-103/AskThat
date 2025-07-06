@@ -93,7 +93,7 @@ namespace AskThat.Infrastructure.Data
                 entity.Property(e => e.CreatedAt)
                     .HasDefaultValueSql("GETDATE()");
 
-                entity.Property(e => e.CommentCount)
+                entity.Property(e => e.AnswerCount)
                     .HasDefaultValue(0);
 
                 entity.HasOne(e => e.User)

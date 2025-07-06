@@ -18,7 +18,10 @@ namespace AskThat.Web.Models.ViewModels
         public DateTime UpdatedAt { get; set; }
         public string Username { get; set; } = string.Empty;
         public int UserId { get; set; }
-        public int CommentCount { get; set; }
+        public int AnswerCount { get; set; }
+
+        public IEnumerable<AnswerViewModel> Answers { get; set; } = new List<AnswerViewModel>();
+
     }
 
     public class CreateQuestionViewModel

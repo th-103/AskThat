@@ -15,7 +15,7 @@ namespace AskThat.Domain.Entities
 
         public DateTime CreatedAt { get; set; }
 
-        public DateTime UpdateAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
         [Required]
         [StringLength(200)]
@@ -25,7 +25,7 @@ namespace AskThat.Domain.Entities
         [StringLength(5000)]
         public string Content { get; set; } = string.Empty;
 
-        public int CommentCount { get; set; }
+        public int AnswerCount { get; set; }
 
         public User User { get; set; } = null!;
         public ICollection<Answer> Answers { get; set; } = new List<Answer>();

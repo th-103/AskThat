@@ -30,10 +30,10 @@ namespace AskThat.Web.Controllers
                     Title = q.Title,
                     Content = q.Content,
                     CreatedAt = q.CreatedAt,
-                    UpdatedAt = q.UpdateAt,
+                    UpdatedAt = q.UpdatedAt,
                     Username = q.User?.Username ?? "Unknown",
                     UserId = q.UserId,
-                    CommentCount = q.CommentCount
+                    AnswerCount = q.AnswerCount
                 });
 
                 var viewModel = new QuestionsListViewModel
@@ -57,6 +57,7 @@ namespace AskThat.Web.Controllers
 
         // GET: /Questions/Details/5
         [HttpGet]
+        // Update the Details method in src/AskThat.Web/Controllers/QuestionsController.cs
         public async Task<IActionResult> Details(int id)
         {
             try
@@ -73,10 +74,20 @@ namespace AskThat.Web.Controllers
                     Title = question.Title,
                     Content = question.Content,
                     CreatedAt = question.CreatedAt,
-                    UpdatedAt = question.UpdateAt,
-                    Username = question.User?.Username ?? "Unknown",
+                    UpdatedAt = question.UpdatedAt,
+                    AnswerCount = question.AnswerCount,
                     UserId = question.UserId,
-                    CommentCount = question.CommentCount
+                    Username = question.User?.Username ?? "Unknown",
+                    Answers = question.Answers?.Select(a => new AnswerViewModel
+                    {
+                        AnswerId = a.AnswerId,
+                        Content = a.Content,
+                        CreatedAt = a.CreatedAt,
+                        UpdatedAt = a.UpdatedAt,
+                        UserId = a.UserId,
+                        Username = a.User?.Username ?? "Unknown",
+                        QuestionId = a.QuestionId
+                    }) ?? new List<AnswerViewModel>()
                 };
 
                 return View(viewModel);
@@ -84,7 +95,7 @@ namespace AskThat.Web.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error retrieving question {QuestionId}", id);
-                return View("Error");
+                return NotFound();
             }
         }
 

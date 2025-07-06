@@ -106,12 +106,12 @@ namespace AskThat.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task UpdateCommentCountAsync(int questionId, int commentCount)
+        public async Task UpdateAnswerCountAsync(int questionId, int AnswerCount)
         {
             var question = await _context.Questions.FindAsync(questionId);
             if (question != null)
             {
-                question.CommentCount = commentCount;
+                question.AnswerCount = AnswerCount;
                 await _context.SaveChangesAsync();
             }
         }

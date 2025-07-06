@@ -12,6 +12,6 @@ namespace AskThat.Domain.Interfaces
         Task<IEnumerable<Question>> GetRecentQuestionsAsync(int count);
         Task<Question?> GetQuestionWithAnswersAsync(int questionId);
         Task<IEnumerable<Question>> SearchQuestionsAsync(string searchTerm);
-        Task UpdateCommentCountAsync(int questionId, int commentCount);
+        Task UpdateAnswerCountAsync(int questionId, int AnswerCount);
     }
 }

@@ -39,9 +39,7 @@ namespace AskThat.Application.Services
                 UserId = userId,
                 Title = title,
                 Content = content,
-                CreatedAt = DateTime.UtcNow,
-                UpdateAt = DateTime.UtcNow,
-                CommentCount = 0
+                AnswerCount = 0
             };
 
             await _questionRepo.AddAsync(question);
@@ -56,7 +54,7 @@ namespace AskThat.Application.Services
 
             question.Title = title;
             question.Content = content;
-            question.UpdateAt = DateTime.UtcNow;
+            question.UpdatedAt = DateTime.UtcNow;
 
             await _questionRepo.UpdateAsync(question);
             return question;
