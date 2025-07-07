@@ -21,6 +21,7 @@ namespace AskThat.Web.Controllers
         // POST: /Answers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create(CreateAnswerViewModel model)
         {
             if (!ModelState.IsValid)
@@ -47,6 +48,7 @@ namespace AskThat.Web.Controllers
 
         // GET: /Answers/Edit/5
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
             try
@@ -82,6 +84,7 @@ namespace AskThat.Web.Controllers
         // POST: /Answers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(EditAnswerViewModel model)
         {
             if (!ModelState.IsValid)
@@ -113,6 +116,7 @@ namespace AskThat.Web.Controllers
         // POST: /Answers/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Delete(int id, int questionId)
         {
             try
