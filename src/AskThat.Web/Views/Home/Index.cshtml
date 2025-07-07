@@ -1,13 +1,110 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Welcome to AskThat";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    @if (User.Identity?.IsAuthenticated ?? false)
+@section Styles {
+    <link rel="stylesheet" href="~/css/Home/Index.css" />
+}
+
+
+<div class="hero-section bg-primary text-white py-5 mb-5 rounded">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-3">Welcome to AskThat</h1>
+        <p class="lead mb-4">Your go-to platform for asking questions and sharing knowledge</p>
+
+        @if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <div class="mb-4">
+                <h3>Hello, <strong>@User.Identity.Name</strong>! 👋</h3>
+                <p class="mb-4">Ready to ask a question or help others?</p>
+                <div class="d-flex gap-3 justify-content-center">
+                    <a asp-controller="Questions" asp-action="Create" class="btn btn-light btn-lg">
+                        <i class="fas fa-plus"></i> Ask a Question
+                    </a>
+                    <a asp-controller="Questions" asp-action="Index" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-search"></i> Browse Questions
+                    </a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="mb-4">
+                <p class="mb-4">Join our community to ask questions and share your knowledge!</p>
+                <div class="d-flex gap-3 justify-content-center">
+                    <a asp-controller="Auth" asp-action="Register" class="btn btn-light btn-lg">
+                        <i class="fas fa-user-plus"></i> Get Started
+                    </a>
+                    <a asp-controller="Auth" asp-action="Login" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-question-circle fa-3x text-primary"></i>
+                    </div>
+                    <h5 class="card-title">Ask Questions</h5>
+                    <p class="card-text">Get answers to your questions from our knowledgeable community members.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-lightbulb fa-3x text-warning"></i>
+                    </div>
+                    <h5 class="card-title">Share Knowledge</h5>
+                    <p class="card-text">Help others by sharing your expertise and answering their questions.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-users fa-3x text-success"></i>
+                    </div>
+                    <h5 class="card-title">Learn and Teach</h5>
+                    <p class="card-text">Join a vibrant community where you can expand your knowledge while helping
+                        others grow.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @if (User.Identity?.IsAuthenticated != true)
     {
-        <p>Welcome, <strong>@User.Identity.Name</strong></p>
+        <div class="row">
+            <div class="col-12">
+                <div class="bg-light p-4 rounded text-center">
+                    <h4 class="mb-3">Ready to Get Started?</h4>
+                    <p class="text-muted mb-4">Join thousands of users who are already part of our growing community.</p>
+
+                    <div class="d-flex gap-3 justify-content-center">
+                        <a asp-controller="Auth" asp-action="Register" class="btn btn-primary btn-lg">
+                            Sign Up Today
+                        </a>
+                        <a asp-controller="Questions" asp-action="Index" class="btn btn-outline-primary btn-lg">
+                            Browse Questions
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
 
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+
 </div>

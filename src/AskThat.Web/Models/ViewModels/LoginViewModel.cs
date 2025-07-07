@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace AskThat.Web.Models
+namespace AskThat.Web.Models.ViewModels
 {
     public class LoginViewModel
     {

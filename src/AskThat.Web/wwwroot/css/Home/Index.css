@@ -1,0 +1,15 @@
+.hero-section {
+    background: linear-gradient(135deg, #667eeb 0%, #764ba3 100%);
+}
+
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.fa-3x {
+    font-size: 3rem;
+}

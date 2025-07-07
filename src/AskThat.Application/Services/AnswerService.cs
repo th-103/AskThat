@@ -38,7 +38,6 @@ namespace AskThat.Application.Services
                 QuestionId = questionId,
                 Content = content,
                 CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
             };
 
             await _answerRepository.AddAsync(answer);
@@ -73,17 +72,14 @@ namespace AskThat.Application.Services
 
             var questionId = answer.QuestionId;
 
-            // Get the question before deleting the answer
             var question = await _questionRepository.GetByIdAsync(questionId);
             if (question == null)
                 return false;
 
             await _answerRepository.DeleteAsync(answerId);
 
-            // Update question's answer count
             var answerCount = await _answerRepository.GetAnswerCountByQuestionAsync(questionId);
             question.AnswerCount = answerCount;
-            question.UpdatedAt = DateTime.UtcNow;
 
             await _questionRepository.UpdateAsync(question);
 

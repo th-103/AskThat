@@ -7,6 +7,7 @@ using AskThat.Application.Interfaces;
 using AskThat.Domain.Entitites;
 using AskThat.Domain.Interfaces;
 using AskThat.Web.Models;
+using AskThat.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
