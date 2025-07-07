@@ -95,25 +95,6 @@ namespace AskThat.Infrastructure.Repositories
             return await _context.Answers.CountAsync(a => a.QuestionId == questionId);
         }
 
-        Task<IEnumerable<Answer>> IAnswerRepository.GetAnswersByQuestionAsync(int questionId)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<IEnumerable<Answer>> IAnswerRepository.GetAnswersByUserAsync(int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<Answer?> IRepository<Answer>.GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<IEnumerable<Answer>> IRepository<Answer>.GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
 
 
     }
