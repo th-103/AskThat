@@ -57,7 +57,6 @@ namespace AskThat.Web.Controllers
 
         // GET: /Questions/Details/5
         [HttpGet]
-        // Update the Details method in src/AskThat.Web/Controllers/QuestionsController.cs
         public async Task<IActionResult> Details(int id)
         {
             try

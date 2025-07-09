@@ -54,9 +54,9 @@
             <div class="d-flex justify-content-between">
                 <small class="text-muted">
                     Asked by <strong>@Model.Username</strong> on @Model.CreatedAt.ToString("MMM dd, yyyy 'at' hh:mm tt")
-                    @if (Model.UpdatedAt != Model.CreatedAt)
+                    @if (Model.UpdatedAt.HasValue)
                     {
-                        <span> • Updated on @Model.UpdatedAt.ToString("MMM dd, yyyy 'at' hh:mm tt")</span>
+                        <span> • Updated on @Model.UpdatedAt.Value.ToString("MMM dd, yyyy 'at' hh:mm tt")</span>
                     }
                 </small>
                 <span class="badge bg-secondary">@Model.AnswerCount answers</span>
@@ -82,9 +82,9 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <small class="text-muted">
                                     Answered by <strong>@answer.Username</strong> on @answer.CreatedAt.ToString("MMM dd, yyyy 'at' hh:mm tt")
-                                    @if (answer.UpdatedAt != answer.CreatedAt)
+                                    @if (answer.UpdatedAt.HasValue && answer.UpdatedAt != answer.CreatedAt)
                                     {
-                                        <span> • Updated on @answer.UpdatedAt.ToString("MMM dd, yyyy 'at' hh:mm tt")</span>
+                                        <span> • Updated on @answer.UpdatedAt.Value.ToString("MMM dd, yyyy 'at' hh:mm tt")</span>
                                     }
                                 </small>
                                 @if (User.Identity?.IsAuthenticated == true &&
